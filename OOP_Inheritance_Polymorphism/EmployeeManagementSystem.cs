@@ -4,17 +4,17 @@ namespace EmployeeManagement
 {
     interface IPrintable
     {
-        void DisplayEmployeeDetails();
+        void PrintDetails();
     }
     class Employee : IPrintable
     {
-        protected string firstName, lastName, designation;
+        protected string f_Name, l_Name, designation;
         protected float netSalary, grossSalary;
 
         protected Employee()
         {
-            this.firstName = "";
-            this.lastName = "";
+            this.f_Name = "";
+            this.l_Name = "";
             this.designation = "";
             this.netSalary = 0.0F;
             this.grossSalary = 0.0F;
@@ -22,21 +22,21 @@ namespace EmployeeManagement
 
         protected Employee(string fName, string lName, string designation, float salary)
         {
-            this.firstName = fName;
-            this.lastName = lName;
+            this.f_Name = fName;
+            this.l_Name = lName;
             this.designation = designation;
             this.netSalary = salary;
         }
 
         public virtual void CalculateSalary()
         {
-            // empty function for overriding
+           
         }
 
-        public void DisplayEmployeeDetails()
+        public void PrintDetails()
         {
             Console.WriteLine("EMPLOYEE DETAILS:\n");
-            Console.WriteLine("Name: {0} {1}", this.firstName, this.lastName);
+            Console.WriteLine("Name: {0} {1}", this.f_Name, this.l_Name);
             Console.WriteLine("Designation: {0}", this.designation);
             Console.WriteLine("Net Salary: {0}", this.netSalary);
             Console.WriteLine("Gross Salary: {0}\n", this.grossSalary);
@@ -57,7 +57,6 @@ namespace EmployeeManagement
         public override void CalculateSalary()
         {
             grossSalary = (1 + petrolAllowance + foodAllowance + otherAllowance) * netSalary;
-
         }
     }
 
@@ -79,18 +78,17 @@ namespace EmployeeManagement
         }
     }
 
-    class EmployeeManagementMain
+    class EmployeeMgmtMain
     {
-        static void Main()
+        static void Main(string[] args)
         {
             Employee obj;
-            obj = new Manager("Kayden", "Break", "Manager", 123456);
+            obj = new Manager("ABC", "Kapoor", "Manager", 65000);
             obj.CalculateSalary();
-            obj.DisplayEmployeeDetails();
+            obj.PrintDetails();
 
-            obj = new MarketingExecutive("Aether", "Twilight", "Marketing Executive", 123456, 10);
+            obj = new MarketingExecutive("XYZ", "Jain", "Marketing Executive", 55000, 10);
             obj.CalculateSalary();
-            obj.DisplayEmployeeDetails();
+            obj.PrintDetails();
         }
     }
-}
